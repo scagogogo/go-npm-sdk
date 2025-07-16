@@ -81,10 +81,12 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-package-lock.json
 yarn.lock
 .npm
 .yarn-integrity
+
+# Allow package-lock.json for documentation dependencies
+!docs/package-lock.json
 
 # Test directories and files
 /testdata/
