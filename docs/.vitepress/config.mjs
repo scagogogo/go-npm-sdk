@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'Go NPM SDK',
   description: 'A comprehensive Go SDK for npm operations',
+  base: '/go-npm-sdk/',
   
   // Multi-language support
   locales: {
@@ -134,7 +135,7 @@ export default defineConfig({
   },
 
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', href: '/go-npm-sdk/favicon.ico' }],
     ['meta', { name: 'theme-color', content: '#3c8772' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en' }],
