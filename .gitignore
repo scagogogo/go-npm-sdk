@@ -205,6 +205,14 @@ build/
 npm-sdk-test/
 portable-npm-test/
 test-project/
+example-projects/
+demo-*/
+sample-*/
+
+# SDK generated files
+sdk-output/
+generated/
+.generated/
 
 # Local development files
 *.local
