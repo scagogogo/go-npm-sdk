@@ -128,6 +128,14 @@ pnpm-lock.yaml
 .eslintcache
 .stylelintcache
 
+# Bun package manager
+bun.lockb
+.bun/
+
+# Rush monorepo
+common/temp/
+common/deploy/
+
 # Allow package-lock.json for documentation dependencies
 !docs/package-lock.json
 
