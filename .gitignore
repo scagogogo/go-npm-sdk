@@ -13,11 +13,23 @@
 *.out
 coverage.out
 coverage.html
+coverage.txt
+coverage.xml
+coverage.json
 *.cover
+*.coverprofile
+.coverage/
+htmlcov/
+.nyc_output/
+coverage/
 
 # Go workspace file
 go.work
 go.work.sum
+
+# Go module cache
+go.sum.backup
+go.mod.backup
 
 # Dependency directories
 vendor/
@@ -47,6 +59,12 @@ vendor/
 *.swp
 *.swo
 *~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+.fleet/
+.vscode-test/
 .project
 .settings/
 
@@ -66,6 +84,11 @@ desktop.ini
 *.log
 *.bak
 *.backup
+*.cache
+*.pid
+*.seed
+*.pid.lock
+.lock-wscript
 
 # Environment files
 .env
@@ -84,6 +107,11 @@ yarn-error.log*
 yarn.lock
 .npm
 .yarn-integrity
+.pnpm-debug.log*
+.pnpm-store/
+pnpm-lock.yaml
+.eslintcache
+.stylelintcache
 
 # Allow package-lock.json for documentation dependencies
 !docs/package-lock.json
@@ -97,6 +125,22 @@ test-output/
 # Documentation build artifacts
 /docs/_build/
 /docs/site/
+/docs/.vitepress/dist/
+/docs/.vitepress/cache/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+.docker/
+
+# CI/CD and deployment
+.github/secrets/
+.env.local
+.env.*.local
+dist/
+build/
+.vercel/
+.netlify/
 
 # Cache directories
 .cache/
