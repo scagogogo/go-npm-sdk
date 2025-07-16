@@ -149,6 +149,11 @@ common/deploy/
 /tmp/
 /temp/
 test-output/
+test-results/
+.test/
+*.test.log
+benchmark-results/
+*.bench.out
 
 # Documentation build artifacts
 /docs/_build/
