@@ -31,6 +31,10 @@ go.work.sum
 go.sum.backup
 go.mod.backup
 
+# Go build cache
+.gocache/
+vendor/
+
 # Dependency directories
 vendor/
 
