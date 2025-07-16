@@ -1,0 +1,141 @@
+# Go specific
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+coverage.out
+coverage.html
+*.cover
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Dependency directories
+vendor/
+
+# Profiling files
+*.prof
+*.pprof
+*.trace
+
+# Benchmark results
+*.bench
+
+# Memory profiling
+*.mprof
+
+# CPU profiling
+*.cprof
+
+# Build artifacts
+/bin/
+/build/
+/dist/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.bak
+*.backup
+
+# Environment files
+.env
+.env.local
+.env.*.local
+config.local.*
+*.local.json
+*.local.yaml
+*.local.yml
+
+# Node.js (for testing npm functionality)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.npm
+.yarn-integrity
+
+# Test directories and files
+/testdata/
+/tmp/
+/temp/
+test-output/
+
+# Documentation build artifacts
+/docs/_build/
+/docs/site/
+
+# Cache directories
+.cache/
+*.cache
+
+# Archive files
+*.tar
+*.tar.gz
+*.zip
+*.rar
+
+# Certificate and key files
+*.pem
+*.key
+*.crt
+*.p12
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Project specific
+# Portable Node.js installations for testing
+.go-npm-sdk/
+.go-npm-sdk-example/
+
+# Test project directories created by examples
+npm-sdk-test/
+portable-npm-test/
+test-project/
+
+# Local development files
+*.local
+local.*
+
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
+
+# Logs
+logs/
+*.log
