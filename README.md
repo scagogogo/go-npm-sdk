@@ -4,6 +4,12 @@
 
 A comprehensive Go SDK for npm operations with cross-platform support.
 
+## 📚 Documentation
+
+**🌐 [Complete Documentation Website](https://scagogogo.github.io/go-npm-sdk/)**
+
+Visit our comprehensive documentation website for detailed guides, API references, and examples.
+
 ## Features
 
 - **Automatic npm Installation**: Detect and install npm automatically based on your operating system
@@ -68,6 +74,8 @@ func main() {
     fmt.Println("Package installed successfully!")
 }
 ```
+
+> 💡 **Need more examples?** Check out our [comprehensive documentation](https://scagogogo.github.io/go-npm-sdk/) for detailed guides and advanced usage patterns.
 
 ## Core Features
 
@@ -161,7 +169,7 @@ if info.IsLinux() {
 
 For complete API documentation, visit our documentation website:
 
-**📚 [https://scagogogo.github.io/go-npm-sdk/](https://scagogogo.github.io/go-npm-sdk/)**
+**📚 [Complete Documentation Website](https://scagogogo.github.io/go-npm-sdk/)**
 
 The documentation includes:
 - Complete API reference
@@ -211,4 +219,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [GitHub Issues](https://github.com/scagogogo/go-npm-sdk/issues) - Report bugs and request features
 - [GitHub Discussions](https://github.com/scagogogo/go-npm-sdk/discussions) - Ask questions and share ideas
-- [Documentation](https://scagogogo.github.io/go-npm-sdk/) - Complete documentation and guides
+- **[📖 Documentation Website](https://scagogogo.github.io/go-npm-sdk/)** - Complete documentation and guides

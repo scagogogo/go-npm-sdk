@@ -4,6 +4,12 @@
 
 一个用于在Go语言中操作npm的全面SDK，支持跨平台操作。
 
+## 📚 文档
+
+**🌐 [完整文档网站](https://scagogogo.github.io/go-npm-sdk/)**
+
+访问我们的综合文档网站，获取详细指南、API参考和示例。
+
 ## 特性
 
 - **自动npm安装**: 根据操作系统自动检测和安装npm
@@ -68,6 +74,8 @@ func main() {
     fmt.Println("包安装成功！")
 }
 ```
+
+> 💡 **需要更多示例？** 查看我们的[完整文档](https://scagogogo.github.io/go-npm-sdk/)获取详细指南和高级用法模式。
 
 ## 核心功能
 
@@ -161,7 +169,7 @@ if info.IsLinux() {
 
 完整的API文档请访问我们的文档网站：
 
-**📚 [https://scagogogo.github.io/go-npm-sdk/](https://scagogogo.github.io/go-npm-sdk/)**
+**📚 [完整文档网站](https://scagogogo.github.io/go-npm-sdk/)**
 
 文档包括：
 - 完整的API参考
@@ -211,4 +219,4 @@ SDK支持多种npm安装方法：
 
 - [GitHub Issues](https://github.com/scagogogo/go-npm-sdk/issues) - 报告错误和请求功能
 - [GitHub Discussions](https://github.com/scagogogo/go-npm-sdk/discussions) - 提问和分享想法
-- [文档](https://scagogogo.github.io/go-npm-sdk/) - 完整文档和指南
+- **[📖 文档网站](https://scagogogo.github.io/go-npm-sdk/)** - 完整文档和指南
