@@ -1,25 +1,26 @@
 # Go NPM SDK
 
-一个用于在Go语言中操作npm的SDK，提供了npm常用操作的Go API封装。
+[English](README.md) | [简体中文](README.zh.md)
 
-## 特性
+A comprehensive Go SDK for npm operations with cross-platform support.
 
-- 🚀 **自动npm安装**: 根据操作系统自动检测和安装npm
-- 📦 **便携版支持**: 支持下载便携版Node.js/npm
-- 🔧 **完整API封装**: 封装npm的所有常用命令
-- 🌍 **跨平台支持**: 支持Windows、macOS、Linux
-- 📝 **项目管理**: 提供package.json读写和依赖管理功能
-- ⚡ **高性能**: 异步执行，支持超时控制
+## Features
 
-## 快速开始
+- **Automatic npm Installation**: Detect and install npm automatically based on your operating system
+- **Portable Version Support**: Download and manage portable Node.js/npm versions
+- **Complete API Coverage**: Full wrapper for all common npm commands
+- **Cross-Platform Support**: Works on Windows, macOS, and Linux
+- **Project Management**: Read, write, and manage package.json files
+- **High Performance**: Asynchronous execution with timeout control
+- **Type Safety**: Comprehensive error handling with structured error types
 
-### 安装
+## Installation
 
 ```bash
 go get github.com/scagogogo/go-npm-sdk
 ```
 
-### 基本使用
+## Quick Start
 
 ```go
 package main
@@ -28,119 +29,186 @@ import (
     "context"
     "fmt"
     "log"
-    
+
     "github.com/scagogogo/go-npm-sdk/pkg/npm"
 )
 
 func main() {
-    // 创建npm客户端
+    // Create npm client
     client, err := npm.NewClient()
     if err != nil {
         log.Fatal(err)
     }
-    
-    // 检查npm是否可用
-    if !client.IsAvailable(context.Background()) {
-        // 自动安装npm
-        if err := client.Install(context.Background()); err != nil {
+
+    ctx := context.Background()
+
+    // Check if npm is available
+    if !client.IsAvailable(ctx) {
+        // Auto-install npm
+        if err := client.Install(ctx); err != nil {
             log.Fatal(err)
         }
     }
-    
-    // 初始化项目
-    if err := client.Init(context.Background(), "my-project"); err != nil {
+
+    // Get npm version
+    version, err := client.Version(ctx)
+    if err != nil {
         log.Fatal(err)
     }
-    
-    // 安装依赖
-    if err := client.InstallPackage(context.Background(), "lodash"); err != nil {
+    fmt.Printf("npm version: %s\n", version)
+
+    // Install a package
+    err = client.InstallPackage(ctx, "lodash", npm.InstallOptions{
+        SaveDev: false,
+        SaveExact: true,
+    })
+    if err != nil {
         log.Fatal(err)
     }
-    
-    fmt.Println("项目初始化完成！")
+    fmt.Println("Package installed successfully!")
 }
 ```
 
-## API文档
+## Core Features
 
-### 核心接口
+### Automatic npm Installation
 
-#### Client
+The SDK can automatically detect and install npm based on your operating system:
 
 ```go
-type Client interface {
-    // 检查npm是否可用
-    IsAvailable(ctx context.Context) bool
-    
-    // 安装npm
-    Install(ctx context.Context) error
-    
-    // 获取npm版本
-    Version(ctx context.Context) (string, error)
-    
-    // 项目初始化
-    Init(ctx context.Context, name string) error
-    
-    // 安装包
-    InstallPackage(ctx context.Context, pkg string) error
-    
-    // 卸载包
-    UninstallPackage(ctx context.Context, pkg string) error
-    
-    // 更新包
-    UpdatePackage(ctx context.Context, pkg string) error
-    
-    // 列出已安装的包
-    ListPackages(ctx context.Context) ([]Package, error)
-    
-    // 运行脚本
-    RunScript(ctx context.Context, script string) error
+client, _ := npm.NewClient()
+ctx := context.Background()
+
+if !client.IsAvailable(ctx) {
+    // Automatically install npm using the best method for your OS
+    err := client.Install(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
 }
 ```
 
-### 项目管理
+### Portable npm Management
+
+Download and manage portable Node.js/npm versions without system-wide installation:
 
 ```go
-// 读取package.json
-pkg, err := npm.ReadPackageJSON("./package.json")
+manager, err := npm.NewPortableManager("/opt/npm-portable")
+if err != nil {
+    log.Fatal(err)
+}
 
-// 添加依赖
+// Install Node.js 18.17.0 with npm
+config, err := manager.Install(ctx, "18.17.0")
+if err != nil {
+    log.Fatal(err)
+}
+
+// Create client for this version
+client, err := manager.CreateClient("18.17.0")
+if err != nil {
+    log.Fatal(err)
+}
+```
+
+### Package.json Management
+
+Read, write, and manage package.json files:
+
+```go
+pkg := npm.NewPackageJSON("./package.json")
+
+// Load existing package.json
+err := pkg.Load()
+if err != nil {
+    log.Fatal(err)
+}
+
+// Modify package information
+pkg.SetName("my-package")
+pkg.SetVersion("2.0.0")
 pkg.AddDependency("lodash", "^4.17.21")
+pkg.AddScript("build", "webpack")
 
-// 保存package.json
-err = pkg.Save("./package.json")
+// Save changes
+err = pkg.Save()
+if err != nil {
+    log.Fatal(err)
+}
 ```
 
-## 支持的操作系统
+### Platform Detection
 
-- **Windows**: 通过Chocolatey或官方安装程序安装
-- **macOS**: 通过Homebrew或官方安装程序安装  
-- **Linux**: 通过包管理器（apt、yum、pacman等）安装
+Detect the current platform for platform-specific operations:
 
-## 开发
+```go
+import "github.com/scagogogo/go-npm-sdk/pkg/platform"
 
-### 构建
+detector := platform.NewDetector()
+info, err := detector.Detect()
+if err != nil {
+    log.Fatal(err)
+}
 
-```bash
-go build ./...
+fmt.Printf("Platform: %s\n", info.Platform)
+fmt.Printf("Architecture: %s\n", info.Architecture)
+if info.IsLinux() {
+    fmt.Printf("Linux distribution: %s\n", info.Distribution)
+}
 ```
 
-### 测试
+## API Documentation
 
-```bash
-go test ./...
-```
+For complete API documentation, visit our documentation website:
 
-### 运行示例
+**📚 [https://scagogogo.github.io/go-npm-sdk/](https://scagogogo.github.io/go-npm-sdk/)**
 
-```bash
-go run examples/basic/main.go
-```
+The documentation includes:
+- Complete API reference
+- Usage guides and tutorials
+- Examples and best practices
+- Platform-specific information
 
-## 贡献
+## Examples
 
-欢迎提交Issue和Pull Request！
+See the [examples](./examples/) directory for more comprehensive examples:
 
-## 许可证
+- [Basic Usage](./examples/basic_usage.go) - Getting started with the SDK
+- [Package Management](./examples/package_management.go) - Installing and managing packages
+- [Portable Installation](./examples/portable_installation.go) - Using portable npm versions
+- [Platform Detection](./examples/platform_detection.go) - Detecting platform information
+- [Dependency Management](./examples/dependency_management.go) - Managing dependencies
 
-MIT License - 详见 [LICENSE](LICENSE) 文件
+## Supported Platforms
+
+- **Windows**: Windows 10/11, Windows Server 2019/2022
+- **macOS**: macOS 10.15+ (Intel and Apple Silicon)
+- **Linux**: Ubuntu, Debian, CentOS, RHEL, Fedora, SUSE, Arch, Alpine
+
+## Installation Methods
+
+The SDK supports multiple npm installation methods:
+
+1. **Package Manager**: Use system package managers (apt, yum, brew, etc.)
+2. **Official Installer**: Download and run official Node.js installer
+3. **Portable**: Download portable Node.js/npm version
+4. **Manual**: Manual installation guidance
+
+## Requirements
+
+- Go 1.19 or later
+- Internet connection for downloading npm/Node.js (if not already installed)
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+- [GitHub Issues](https://github.com/scagogogo/go-npm-sdk/issues) - Report bugs and request features
+- [GitHub Discussions](https://github.com/scagogogo/go-npm-sdk/discussions) - Ask questions and share ideas
+- [Documentation](https://scagogogo.github.io/go-npm-sdk/) - Complete documentation and guides
