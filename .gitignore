@@ -69,6 +69,17 @@ Thumbs.db
 *.sublime-workspace
 .fleet/
 .vscode-test/
+
+# JetBrains IDEs
+*.iml
+*.ipr
+*.iws
+.idea_modules/
+
+# Vim
+.vim/
+*.vim
+.netrwhist
 .project
 .settings/
 
