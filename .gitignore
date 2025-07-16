@@ -109,10 +109,15 @@ desktop.ini
 .env
 .env.local
 .env.*.local
+.envrc
 config.local.*
 *.local.json
 *.local.yaml
 *.local.yml
+*.local.toml
+.secrets/
+secrets.json
+secrets.yaml
 
 # Node.js (for testing npm functionality)
 node_modules/
